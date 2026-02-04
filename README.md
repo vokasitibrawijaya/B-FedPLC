@@ -1,102 +1,51 @@
 # B-FedPLC: Blockchain-Enabled Federated Learning with Prototype-Anchored Learning and Dynamic Community Adaptation
-[![IEEE Access](https://img.shields.io/badge/IEEE-Access-blue.svg)](https://ieeeaccess.ieee.org/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
-[![PyTorch](https://img.shields.io/badge/PyTorch-2.0+-red.svg)](https://pytorch.org/)
+
+![IEEE Access](https://img.shields.io/badge/IEEE-Access-blue.svg)
+![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
+![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)
+![PyTorch](https://img.shields.io/badge/PyTorch-2.0+-red.svg)
+
 Official implementation of **B-FedPLC** (Blockchain-Enabled Federated Learning with Prototype-Anchored Learning and Dynamic Community Adaptation for Byzantine-Resilient Distributed Machine Learning).
-> **Note**: This repository contains the source code for the experiments presented in our IEEE Access paper.
+
+> [!NOTE]  
+> This repository contains the source code for the experiments presented in our **IEEE Access (2026)** paper.
+
 ---
-## ?? Paper Information
+
+## 📄 Paper Information
+
 **Title**: B-FedPLC: Blockchain-Enabled Federated Learning with Prototype-Anchored Learning and Dynamic Community Adaptation for Byzantine-Resilient Distributed Machine Learning
-**Abstract**:
-Federated Learning (FL) faces critical challenges in non-IID data environments and vulnerability to Byzantine attacks. Existing solutions often trade off between robust security and model performance. We propose B-FedPLC, a novel framework integrating Blockchain-based audit trails, Prototype-Anchored Regularization Layer (PARL), and Label Distribution-based Community Adaptation (LDCA). Our results demonstrate that B-FedPLC achieves superior resilience (sustaining 67.70% accuracy under 20% Byzantine attacks) compared to state-of-the-art methods like Krum and Trimmed Mean, while effectively handling concept drift in heterogeneous data distributions.
+
+**Abstract**:  
+Federated Learning (FL) faces critical challenges in non-IID data environments and vulnerability to Byzantine attacks. Existing solutions often trade off between robust security and model performance. We propose **B-FedPLC**, a novel framework integrating Blockchain-based audit trails, **Prototype-Anchored Regularization Layer (PARL)**, and **Label Distribution-based Community Adaptation (LDCA)**. 
+
+Our results demonstrate that B-FedPLC achieves superior resilience (sustaining **67.70% accuracy** under 20% Byzantine attacks) compared to state-of-the-art methods like Krum and Trimmed Mean, while effectively handling concept drift in heterogeneous data distributions.
+
+
+
 **Authors**: Rachmad Andri Atmoko, Sholeh Hadi Pramono, Muhammad Fauzan Edy Purnomo, Panca Mudjirahardjo, Mahdin Rohmatillah, Cries Avian  
 **Affiliation**: Universitas Brawijaya, Indonesia  
 **Journal**: IEEE ACCESS (2026)
+
 ---
-## ?? Key Features
-- **Blockchain-IPFS Integration**: Immutable ledger for model updates with Merkle tree verification ensures complete transparency and auditability.
-- **Prototype-Anchored Regularization (PARL)**: Prevents catastrophic forgetting in local training by anchoring updates to global prototypes.
-- **Dynamic Community Adaptation (LDCA)**: dynamically clusters clients based on label distribution to handle statistical heterogeneity (Non-IID).
-- **Multi-Layered Byzantine Detection**: Combines statistical Z-score filtering with Cosine Similarity checks to robustly identify malicious actors.
+
+## 🚀 Key Features
+
+* **Blockchain-IPFS Integration**: Immutable ledger for model updates with Merkle tree verification ensures complete transparency and auditability.
+* **Prototype-Anchored Regularization (PARL)**: Prevents catastrophic forgetting in local training by anchoring updates to global prototypes.
+* **Dynamic Community Adaptation (LDCA)**: Dynamically clusters clients based on label distribution to handle statistical heterogeneity (Non-IID).
+* **Multi-Layered Byzantine Detection**: Combines statistical Z-score filtering with Cosine Similarity checks to robustly identify malicious actors.
+
 ---
-## ?? Project Structure
-\\\ash
+
+## 📂 Project Structure
+
+```bash
 B-FedPLC/
-+-- b_fedplc.py                         # Core implementation of B-FedPLC algorithm
-+-- ieee_comprehensive_experiment.py    # Main script to run all IEEE Access experiments
-+-- check_experiment_status.py          # Utility to monitor experiment progress
-+-- requirements.txt                    # Project dependencies
-+-- paper/
-�   +-- ACCESS_latex_template_20240429/
-�       +-- generate_all_figures.py     # Script to generate publication figures
-+-- README.md                           # Project documentation
-\\\
----
-## ?? Installation
-### 1. Prerequisites
-- **Python**: 3.8 or higher
-- **PyTorch**: 2.0+ with CUDA support (recommended for performance)
-- **RAM**: Minimum 16GB recommended due to multiple client simulations
-### 2. Setup Environment
-\\\ash
-# Clone the repository
-git clone https://github.com/vokasitibrawijaya/B-FedPLC.git
-cd B-FedPLC
-# Create virtual environment (Optional but recommended)
-python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
-# Install dependencies
-pip install -r requirements.txt
-\\\
----
-## ?? Experiments
-We provide a comprehensive script that reproduces all experiments discussed in the paper (Ablation Study, Scalability, Non-IID Sensitivity, and Byzantine Resilience).
-### 1. Run All Experiments
-To run the full suite of experiments (this may take several hours depending on hardware):
-\\\ash
-python ieee_comprehensive_experiment.py
-\\\
-This script will:
-- Execute Ablation Study (Impact of PARL, LDCA)
-- Perform Scalability Testing (10, 30, 50, 100 clients)
-- Analyze Non-IID Sensitivity (Dirichlet a values)
-- Test Byzantine Resilience (Attack types and intensities)
-- Save results to \ieee_comprehensive_results.json\
-### 2. Monitor Progress
-You can check the status of running experiments using:
-\\\ash
-python check_experiment_status.py
-\\\
-### 3. Generate Figures
-After the experiments are complete, generate the figures used in the paper:
-\\\ash
-python paper/ACCESS_latex_template_20240429/generate_all_figures.py
-\\\
-The figures will be saved in the \paper/ACCESS_latex_template_20240429/figures/\ directory in both PDF and PNG formats.
----
-## ?? Results Summary
-| Metric | B-FedPLC | FedAvg | Improvement |
-|:-------|:--------:|:------:|:-----------:|
-| **Benign Accuracy** | **70.25%** | 70.38% | Comparable |
-| **Byzantine Resilience** (20% Attack) | **67.70%** | <40% | **+69%** |
-| **Non-IID Stabilization** (a=0.3) | **68.78%** | 55.4% | **+24%** |
-| **BFT Threshold** | **~25%** | <10% | **2.5x** |
-> *Note: Results are based on averaged runs across 5 random seeds for statistical significance.*
----
-## ?? Citation
-If you use this code or find our work helpful, please consider citing:
-\\\ibtex
-@article{atmoko2026bfedplc,
-  title={B-FedPLC: Blockchain-Enabled Federated Learning with Prototype-Anchored Learning and Dynamic Community Adaptation for Byzantine-Resilient Distributed Machine Learning},
-  author={Atmoko, Rachmad Andri and Pramono, Sholeh Hadi and Purnomo, Muhammad Fauzan Edy and Mudjirahardjo, Panca and Rohmatillah, Mahdin and Avian, Cries},
-  journal={IEEE Access},
-  year={2026},
-  publisher={IEEE}
-}
-\\\
----
-## ?? Contact & Acknowledgments
-**Correspondence**: Sholeh Hadi Pramono (sholehpramono@ub.ac.id)  
-**Research Team**: B-FedPLC Research Group, Universitas Brawijaya.
-This research aligns with the roadmap of the **Laboratory of Internet of Things & Human Centered Design**, Faculty of Vocational Studies, Universitas Brawijaya.
+├── b_fedplc.py                      # Core implementation of B-FedPLC algorithm
+├── ieee_comprehensive_experiment.py # Main script to run all IEEE Access experiments
+├── check_experiment_status.py       # Utility to monitor experiment progress
+├── requirements.txt                 # Project dependencies
+└── paper/
+    └── ACCESS_latex_template_20240429/
+        └── generate_all_figures.py  # Script to generate publication figures
