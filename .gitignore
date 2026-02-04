@@ -1,0 +1,35 @@
+# Ignore everything by default
+*
+
+# Unignore directories so we can traverse them
+!*/
+
+# Unignore Python source files
+!*.py
+!*.pyw
+
+# Unignore essential project files
+!README.md
+!.gitignore
+!requirements.txt
+
+# Re-ignore specific large/unwanted directories
+.idea/
+.vscode/
+.git/
+.venv/
+.venv312/
+venv/
+env/
+__pycache__/
+build/
+dist/
+*.egg-info/
+node_modules/
+b_fedplc_ipfs/
+data/
+plots/
+figures/
+temp/
+tmp/
+
